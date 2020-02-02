@@ -16,11 +16,25 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
   end
 
+  # def search
+  #   @students = Student.search(params[:query])
+  #   if params[:query].blank?
+  #     @students = Student.all
+  #   end
+  #   render 'index' 
+  # end
+
   def show
     @student = Student.find(params[:id])
   end
 
   def index
+    if !params[:query] || params[:query].blank?
+        @students = Student.all
+    else 
+      @students = Student.search(params[:query])
+    end
+    render 'index'
     @students = Student.all
   end
 

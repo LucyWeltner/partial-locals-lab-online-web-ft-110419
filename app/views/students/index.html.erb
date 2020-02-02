@@ -1,0 +1,13 @@
+
+
+<%= form_with url: "/students", method: :get do |f| %>
+<h3><%= f.label :query, "Search for a Student:" %></h3>
+<p><%= f.text_field :query %><p>
+<% end %>
+
+<% if @students %>
+	<% @students.each do |student| %>
+		<%= render partial: 'student', locals: {student: student} %>
+	<% end %>
+<% end %>
+
